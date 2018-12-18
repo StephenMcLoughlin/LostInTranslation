@@ -1,0 +1,235 @@
+@import url(http://fonts.googleapis.com/css?family=Coming+Soon);
+
+body {
+  /*padding: 50px;*/
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+    font-family: 'Coming Soon', cursive;
+    background:  #ffb733;
+    /* background-image: linear-gradient(to left, #ffb733, #fff);*/
+   /* background-image: url('https://s3.envato.com/files/34112155/1649.jpg');*/
+}
+
+a {
+  color: #00B7FF;
+}
+
+thead {
+	background-color: #f7ef6a;
+	border: 1px solid #a3a3a3;
+	border-radius: 20px;
+}
+
+table {
+	border: 2px solid #a3a3a3;
+}
+
+#main {
+	padding-top: 100px;
+}
+
+.thumbnails img {
+	width: 50px;
+	height: 50px;
+	border-radius: 10px;
+}
+
+#favourites {
+	padding: 30px;
+	overflow-y: scroll;
+	max-height: 600px;
+}
+
+#message {
+	color: #fff;
+}
+
+#leaderboard {
+	padding: 30px;
+	overflow-y: scroll;
+	max-height: 600px;
+}
+
+#players_online {
+	padding: 10px;
+	overflow-y: scroll;
+	min-height: 200px;
+}
+
+#fav-well {
+	background: rgba(255,255,255,0.8);
+}
+
+.well {
+    /*border-width: 5px;*/
+    border-color: rgba(0,0,0,.7);
+    background-color: #f5f5f5;
+}
+
+#winner img {
+	max-width: 100px;
+	height: auto;
+	border-radius: 30px;
+}
+
+#tab {
+	min-height: 700px;
+}
+
+#countdown {
+	font-size: 50px;
+	color: white;
+}
+
+video {
+	width: 100%;
+	height: 100%;
+}
+/*
+video {
+  	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+*/
+#videoArea {
+	min-height: 300px;
+	background-size: cover;
+	/*background-image: url('http://rts.fm/wp-content/uploads/2015/02/tv.png');*/
+	/*border: 1px solid #000;
+	/*margin-left: 65px;
+	margin-top: 30px;
+	/*background: #000;
+	/*min-height: 400px;
+	border-radius: 30px;
+	width: 100%;*/
+}
+#vidContainer {
+	border: 1px solid black;
+	height: 450px;
+	background-color: black;
+}
+/*
+#vidContainer {
+	/*margin-left: 100px;
+	border-radius: 30px;
+	background-color: red;
+	display: block;
+	margin: 0 auto;
+	max-width: 600px;
+	max-height: 400px;
+
+	float: none;
+    clear: both;
+    width: 100%;
+    position: relative;
+    padding-bottom: 40%;
+    padding-top: 25px;
+    height: 0;
+}
+*/
+#modalVideo {
+	float: none;
+    clear: both;
+    width: 100%;
+    position: relative;
+    background-color: black;
+    padding-bottom: 40%;
+    padding-top: 25px;
+    height: 0;
+}
+
+#modalVideo video {
+  	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#vid {
+	/*margin: 0 auto;*/
+	/*max-width: 671px;*/
+	/*min-height: 400px;
+	max-height: 400px;*/
+	display: block;
+}
+
+#gameCntrls {
+	border: 1px solid #000;
+	margin: 0 auto;
+	display: block;
+}
+
+.details {
+	padding: 5px;
+}
+#tv {
+	padding-top: 45px;
+	padding-left: 70px;
+}
+
+.wrapper {
+	border: 1px solid #000;
+}
+
+.container {
+	width: 100%;
+}
+
+.avatar {
+	margin: 20px;
+	
+}
+
+
+.avatar img {
+	margin: 0 auto;
+	display: block;
+	max-width: 150px;
+	max-height: 150px;
+	border-radius: 10px;
+}
+
+.table{
+	border-radius: 10px;
+	background: rgba(255,255,255,0.8);
+}
+/*
+.container {
+	border: 1px solid #000;
+	/*width: 100%;
+	height: 100px;
+	padding: 0;*/
+	/*padding-top: 45px;
+	/*padding-left: 70px;
+	/*margin-left: 115px;*/
+	/*width: 950px;
+	height: 600px;
+	background-size: cover;
+	background-image: url('http://rts.fm/wp-content/uploads/2015/02/tv.png')*/
+}*/
+.col-lg-3 {
+	/*border: 1px solid #000; 
+	/*background-color: white;*/
+	height: 250px;
+}
+
+.col-lg-9 {
+	/*border: 1px solid #000;*/
+	height: 490px;
+	background-color: black;
+	border-radius: 10px;
+	padding-top: 40px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.btn {
+	width: 100%;
+	margin: 5px;
+	/*color: #648302;
+	/*padding: 10px;*/
+	/*border-radius: 10px;*/
+}

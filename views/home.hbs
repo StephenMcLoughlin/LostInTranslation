@@ -1,0 +1,396 @@
+<div ng-controller='viewCtrl'>
+
+	<!-- DASHBOARD  TEMPLATE-->
+	<div class="container" ng-if='dashboard' ng-controller='dashboardCtrl'>  
+      	<div class="row">
+      		
+      		<!-- PROFILE -->
+	        <div class="col-md-3">
+	        	<div class='well'>
+	        		<div class='avatar'>
+	        			<img ng-src='../users/{[{username}]}/profileImage.jpg' class="img-responsive"> <!--Place extension here -->       		
+	        		</div>
+	   				<center><h1>{[{username}]}</h1></center>
+	   				<strong>Wins : {[{wins}]}</strong></br>
+	   				<strong>Rank : {[{rank}]}</strong></br>
+	   				<strong>Games Played : {[{games_played}]}</strong>
+         			<button class='btn btn-warning' data-toggle="collapse" data-target="#picUpload">Change Profile Picture</button>
+
+         			<!-- PROFILE PICTURE UPLOAD -->
+         			<div id='picUpload' class="collapse"></br>
+         				<div class='well'>
+         					{[{progress}]}
+	         				Change profile picture
+		         			<input type="file" file-model = "myFile"/>
+		         			<button ng-click = "uploadFile()">Upload</button>
+		         		</div>
+         			</div>
+
+         			<!-- VIDEO UPLOAD -->
+         			<button class='btn btn-success' data-toggle="collapse" data-target="#videoUpload">Upload Video</button>
+         			<div id='videoUpload' class="collapse"></br>
+	         			<div class='well'>
+		         			<form>
+		         				<div class="form-group">
+		    						<label>Video Name:</label>
+		    						<input type="text" class="form-control" ng-model='videoName' placeholder="Enter name" required>
+		    						</br>
+		    						<h4><b>Subtitle Info</b></h4>
+		    						<label>Intro Subtitle:</label>
+		    						<input type="text" class="form-control" ng-model='initSubtitle' placeholder="Enter subtitle" required>
+		    						</br>
+		    						<div class='form-group row'>
+		    							<div class="col-xs-6">
+		    								<label>Cue Start: </label>
+		    								<input type="number" min='0' max='10' class="form-control" 
+		    								ng-model='initStartTime' value="0" required>
+		    							</div>
+		    							<div class="col-xs-6">
+		    								<label>Cue End: </label>
+		    								<input type="number" min='0' max='10' class="form-control" 
+		    								ng-model='initEndTime' value="0" required>
+		    							</div>
+		    						</div>
+		    						<label>Response Subtitle:</label>
+		    						<div class='form-group row'>
+		    							<div class="col-xs-6">
+		    								<label>Cue Start: </label>
+		    								<input type="number" min='0' max='10' class="form-control" 
+		    								ng-model='responseStartTime' value="0" required>
+		    							</div>
+		    							<div class="col-xs-6">
+		    								<label>Cue End: </label>
+		    								<input type="number" min='0' max='10' class="form-control" 
+		    								ng-model='responseEndTime' value="0" required>
+		    							</div>
+		    						</div>
+									<input type="file" file-model='myFile'/>
+		     						<!--<button class='btn btn-success' ng-click='uploadVideo()'>Upload</button>-->
+		     						<input type='submit' class='btn btn-primary' ng-click='uploadVideo()' value='Upload'>
+		 						</div>
+		         			</form>
+	         			</div>
+         			</div>
+
+         			<!-- CREATE GAME -->
+         			<button class='btn btn-info' data-toggle="collapse" data-target="#gameRules">Create Game</button>
+         			<div id='gameRules' class="collapse"></br>
+         				<div class='well'>
+         					<form name="createForm" ng-submit='create()'>
+         						<label>Room Name:</label>
+								<input type="text" class="form-control" ng-model='roomName' placeholder="Enter room name" required>
+
+								<label>Number of Players:</label>
+	    						<input type="number" ng-model='roomSize' min='2' max='6' value='2' class="form-control" required>	    				
+	    						<label>Timeout:</label>
+	    						<input type='number' ng-model='timeout' min='10' max='30' value='10' class="form-control" required>
+								<input type='submit' class='btn btn-info' value='Begin'>
+							</form>
+
+
+         					<!--
+         					<label>Room Name:</label>
+		    				<input type="text" class="form-control" ng-model='roomName' placeholder="Enter room name" required></br>
+         					<form>
+		         				<div class="form-group">
+		   
+
+		    						<label>Number of Players:</label>
+		    						<input type="number" min='3' max='6'class="form-control" placeholder="Number of Players"></br>
+		    						<label>Timeout:</label>
+		    						<input type='number' min='10' max='30' class="form-control" placeholder="Enter subtitle">
+		    					
+		    						</br>
+		 						</div>
+		         			</form>
+		         		
+         					<button class="btn btn-info" ng-click='create()'>Begin</button>-->
+         				</div>
+         			</div>
+	        	</div>
+	        </div>   <!-- END OF PROFILE -->
+	        
+	        <!-- LEADERBOARD, FAVOURITES, PLAYERS ONLINE --> 
+	        <div class="col-md-5">
+	        	<div class='well' style='height: 700px'>
+	        		<ul class="nav nav-tabs">
+    					<li class="active"><a data-toggle="tab" href="#leaderboard">Leaderboard</a></li>
+    					<li><a data-toggle="tab" href="#favourites" ng-click='viewFavs()'>Favourites</a></li>
+    					<li><a data-toggle="tab" href="#players_online">Players Online</a></li>
+  					</ul>
+
+	  				<div class="tab-content" id='tab'>
+
+	  					<!-- LEADERBOARD -->
+	    				<div id="leaderboard" class="tab-pane fade in active">
+	    					<h3>Leaderboard</h3>
+	      					<table class="table">
+		  						<thead>
+		    						<tr>
+								      <th>Rank</th>
+								      <th></th>
+								      <th>Name</th>
+								      <th>Wins</th>
+								      <th>Games Played</th>
+								    </tr>
+		 						</thead>
+		  						<tbody>
+								    <tr ng-repeat="player in leaderboard">
+								      <td><b>{[{$index + 1}]}</b></td>
+								      <td class='thumbnails'><img ng-src='../users/{[{player.username}]}/profileImage.jpg'></td>
+								      <td>{[{ player.username }]}</td>
+								      <td>{[{ player.wins }]}</td>
+								      <td>{[{ player.games_played }]}</td>
+								    </tr>
+		  						</tbody>
+							</table>
+	    				</div>
+
+	    				<!-- FAVOURITES -->
+					    <div id="favourites" class="tab-pane fade">
+							<h3>Favourites</h3>
+						    <div ng-repeat='favourite in favourites'>
+						      	<div class='row'>
+						      		<div class='well' id='fav-well'>
+						      		<h3>Video: {[{favourite.name}]}</h3>	
+						      		<strong>Subtitle:</strong> {[{favourite.subtitle}]}
+						      		<button type="button" class="btn btn-info btn-lg" 
+						      		data-toggle="modal" data-target="#myModal" ng-click='getVideo(favourite)'>View</button>
+						      		</div>
+						      	</div>	
+							</div>
+
+						    <!-- VIDEO MODAL -->
+						  	<div class="modal fade" id="myModal" role="dialog">
+							    <div class="modal-dialog">
+								    <!-- Modal content-->
+								    <div class="modal-content">
+								       	<div class="modal-header">
+								          	<button type='button' class='close' data-dismiss='modal'>&times;</button>
+								          	<h4 class='modal-title'>Video</h4>
+								        </div>
+								        <div class='modal-body' >
+								          	<div id='modalVideo' ng-model='modalVideo'>
+								          	</div>
+								        </div>
+								        <div class="modal-footer">
+								          	<button type="button" ng-click='close()' class="btn btn-default" data-dismiss="modal">Close</button>
+								      	</div>
+								    </div>
+							  	</div>
+							</div> 
+					    </div> <!-- END OF FAVOURITES -->
+
+					    <!-- PLAYERS ONLINE -->
+					    <div id="players_online" class="tab-pane fade">
+					      	<h3>Players Online</h3>
+					        <table class="table">
+		  						<thead>
+		    						<tr>
+								      <th></th>
+								      <th>Name</th>
+								      <th>Wins</th>
+								      <th>Games Played</th>
+								    </tr>
+		 						</thead>
+		  						<tbody class='thumbnails'>
+								    <tr ng-repeat="player in onlinePlayers">
+								      <td><center><img ng-src='../users/{[{player.username}]}/profileImage.jpg'></center></td>
+								      <td>{[{ player.username }]}</td>
+								      <td>{[{ player.wins}]}</td>
+								      <td>{[{ player.games_played}]}</td>
+								      <!--<td><b>{[{$index + 1}]}</b></td>-->
+								    </tr>
+		  						</tbody>
+							</table>
+					    </div> <!-- END OF PLAYERS ONLINE -->
+
+	  				</div>
+	        	</div>
+	        </div> <!-- END OF LEADERBOARD, FAVOURITES, PLAYERS ONLINE --> 
+
+	        <!-- ROOM DATA -->
+	        <div class="col-md-4">
+	        	<div class='well'>
+	        		<center><h3><b>Rooms</b></h3></center>
+	        		<table class="table table-striped">
+  						<thead>
+    						<tr>
+						      <th>Name</th>
+						      <th>Size</th>
+						      <th>Players needed</th>
+						      <th>Countdown</th>
+						      <th>Join Room</th>
+						    </tr>
+ 						</thead>
+  						<tbody>
+						    <tr ng-repeat="room in roomObjs">
+						      <td><b>{[{ room.name }]}</b></td>
+						      <td>{[{ room.size }]}</td>
+						      <td>{[{ room.size - room.players.length }]}</td>
+						      <td>{[{ room.timeout }]} seconds</td>
+						      <td><button class="btn btn-info" ng-click='joinRoom(roomObjs[$index].name)'>Join</button>
+						    </tr>
+  						</tbody>
+					</table>
+	        	</div>
+	        </div>
+
+
+     	</div>
+    </div>
+
+    <!-- GAME TEMPLATE -->
+    <div class='container' ng-show='game' ng-controller='gameCtrl'>
+    	<div class='row'>
+    		<div class='col-md-9'>
+    		
+    				<div class='row'>
+		    		
+		    			<div class='container'>
+							<div id='vidContainer'>
+
+							<!-- Timer screen -->
+								<div ng-if='showCount'>
+		    						<div id='countdown'>
+		    							<center>{[{count}]}</center>
+
+		    							<div ng-if='showWinner'>
+		    								<center>{[{winnerName}]}</center>
+		    								<center>{[{sub}]}</center>
+		    								<center><div ng-bind-html="winner" id='winner'></div></center>
+		    							</div>
+		    							
+
+		    							<div ng-if='replay'>
+		    								<button class="btn btn-lg btn-success" ng-click='replayGame()'>Replay</button>
+		    							</div>
+
+		    							<div ng-hide='beginGame'><center><h1>Waiting for {[{waitingfor}]} player(s)
+		    							</h1></center></div>		
+		    					</div>
+		    					<div id='message'><center>{[{msg}]}</center></div>
+
+		  						<!-- VOTES -->
+		  						<div ng-show='voteBallot'>
+									<div ng-repeat='x in playerObjs'>
+										<div class='row'>
+											<div class='col-md-9'>
+												<button class="btn btn-info" ng-click='vote(x)' ng-disabled="voteDisabled">{[{x.message}]}</button>
+											</div>
+											<div class='col-md-3'>
+												<button class="btn btn-warning" ng-click='add(x)'>Add To Favourites</button>
+											</div>
+										</div>
+									</div>
+								</div>
+		    				</div>
+							</div>
+						</div>
+		
+					</div>
+
+					<div class='well well-sm'>
+						<input class="form-control" type='text' ng-model='subsTextField' placeholder='Write your response'>
+						<button class='btn btn-warning' ng-click='submit()' ng-disabled="isDisabled" ng-model="isDisabled">Submit</button>
+					</div>
+
+
+			</div>
+			<div class='col-md-3'>
+    			<div class='well'>
+    				<h2>Room: {[{roomName}]}</h2>
+    				<div class='avatar'>
+    					<img ng-src='../users/{[{username}]}/profileImage.jpg' class="img-responsive">
+    				</div>
+    				<div class='details'>
+    					<strong>Username: {[{username}]}</strong>
+    				</div>
+    				<!--<div class='well'>-->
+    					<div id='players_online'>
+	    				<table class="table">
+	  						<thead>
+	    						<tr>
+							      <th>Players in room</th>
+							    </tr>
+	 						</thead>
+	  						<tbody>
+							    <tr ng-repeat="player in players">
+							      <td>{[{ player.username }]}</td>
+							    </tr>
+	  						</tbody>
+						</table>
+						</div>
+					<!--</div>-->
+    				<button class="btn btn-info" ng-click='leaveRoom()'>Leave Room</button>
+    			</div>
+    		</div>
+		</div>
+
+		<div class='row'>
+			<div class='col-md-12'>
+				<div class='well'>
+					<table class="table">
+							<thead>
+							<tr>
+						      <th></th>
+						      <th>Name</th>
+						      <th>Wins</th>
+						      <th><center>Invite<center></th>
+						    </tr>
+							</thead>
+							<tbody class='thumbnails'>
+						    <tr ng-repeat="player in onlinePlayers | filter: {isPlaying: false}">
+						      <td><center><img ng-src='../users/{[{player.username}]}/profileImage.jpg'></center></td>
+						      <td>{[{ player.username }]}</td>
+						      <td>{[{ player.wins }]}</td>
+						      <td><button style='float: right' class="btn btn-warning" ng-click='invite(player)'>Invite To Play</button></td>
+						    </tr>
+							</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--
+		<div class='row'>
+			<div class='col-md-9'>
+
+			</div>
+			<div class='col-md-3'>
+				Place your vote
+				<div ng-repeat='x in playerObjs'>
+					<button class="btn btn-info" ng-click='vote(x)'>{[{x.message}]}</button>
+					<button class="btn btn-warning" ng-click='save(x)'>Add To Favourites</button>
+				</div>
+			</div>
+		</div>
+		-->
+    </div>
+
+    
+<!-- Modal -->
+					  	<div class="modal fade" id="myModal" role="dialog">
+						    <div class="modal-dialog">
+							    <!-- Modal content-->
+							    <div class="modal-content">
+							       	<div class="modal-header">
+							          	<button type='button' class='close' data-dismiss='modal'>&times;</button>
+							          	<h4 class='modal-title'>Video</h4>
+							        </div>
+							        <div class='modal-body' >
+							          	<div id='modalVideo' ng-model='modalVideo'>
+							          	</div>
+							        </div>
+							        <div class="modal-footer">
+							          	<button type="button" ng-click='close()' class="btn btn-default" data-dismiss="modal">Close</button>
+							      	</div>
+							    </div>
+						  	</div>
+						</div> 
+  	
+
+
+
+
+
+

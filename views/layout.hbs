@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+
+    <!-- Angular Scripts -->
+    <script src='/javascripts/angular.min.js'></script>
+    <script src='/javascripts/angular-cookies.js'></script>
+
+    <!-- Angular Module -->
+    <script src='/javascripts/module/module.js'></script>
+
+    <!-- Controllers --> 
+    <script src='/javascripts/controllers/navbarController.js'></script>
+    <script src='/javascripts/controllers/viewController.js'></script>
+    <script src='/javascripts/controllers/dashboardController.js'></script>
+    <script src='/javascripts/controllers/gameController.js'></script> 
+
+    <!-- Services -->
+    <script src='/javascripts/services/sharedService.js'></script>
+
+    <!-- Factories --> 
+    <script src='/javascripts/factories/socketFactory.js'></script>
+    <script src='/javascripts/factories/httpFactory.js'></script>
+
+    <!-- Directives --> 
+    <script src='/javascripts/directives/fileModel.js'></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.min.js"></script>
+    
+    <!--<script src='/javascripts/controller.js'></script>
+    <script src='/javascripts/gameCtrl.js'></script>-->
+	
+   <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io-stream/0.9.1/socket.io-stream.js'></script>-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src='/javascripts/socket.io-stream.js'></script>
+
+    <!-- navbar -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+  	<!--jQuery -->
+  	<script
+  	src="https://code.jquery.com/jquery-1.9.1.js"
+  	integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="
+  	crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<div ng-controller='logRegCtrl'>
+		<nav class="navbar navbar-inverse" style='background-color: #1A2930'>
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>                        
+					</button>
+					<a class="navbar-brand" href="#">Lost in Translation</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href='/users/register'><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+						<li><a href='/login'><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+						<li><a href='#' ng-click='logout()'><span class="glyphicon glyphicon-log-out">
+						</span>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+    {{{body}}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.min.js"></script>
+  </body>
+</html>

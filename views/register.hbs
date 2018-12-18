@@ -1,0 +1,20 @@
+<div class="container">
+	<div class='row'>			
+		<div class="col-md-4"></div>
+			<div class="col-md-4">
+			<div class='well well-lg'>
+				<h2><b>Register</b></h2>
+				<div ng-controller='logRegCtrl'>
+					<form name="registerForm" ng-submit='register()'>
+						<input type='email' class="form-control" ng-model='email' name='email' placeholder='Enter Email' required><br>
+						<input type='text' class="form-control" ng-model='username' name='username' placeholder='Username' required><br>
+						<input type='password' class="form-control" ng-model='password' placeholder='Password' required><br>
+						<input type='password' class="form-control" ng-model='confirmPassword' placeholder='Confirm Password' ng-pattern='password' required><br>
+						<input type='submit' class='btn btn-primary' ng-disabled="password != confirmPassword" value='Register'>
+					</form>
+				</div>
+			</div>
+		</div>
+  		<div class="col-md-4"></div>
+	</div>
+</div>
